@@ -7,7 +7,7 @@ int fibIterative(int n);
 int main(int argc, char** argv) {
   char* opt = argv[1];
   int n = atoi(argv[2]);
-  if (*opt == 'i') {
+  if (*opt == 'i') { // quick and dirty option checking
     printf("ITERATIVE: Fibonacci number for n = %d: %d\n", n, fibIterative(n));
   } else if (*opt == 'r') {
     printf("RECURSIVE: Fibonacci number for n = %d: %d\n", n, fib(n));
