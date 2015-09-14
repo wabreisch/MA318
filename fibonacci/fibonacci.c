@@ -27,10 +27,9 @@ int fib(int n) {
 
 int fibIterative(int n) {
   if (n == 0) { return 0; }
-  if (n == 1 || n == 2) { return 1; } // if n <=2, we will never run the for loop, so we check here
   int n1 = 1; // represents n-1 in the recursive version of fib(int n) -- this is a base case
   int n2 = 1; // represents n-2 in the recursive version of fib(int n) -- this is a base case
-  int sum = 0; // keeps track of the current sum; this will be the nth Fib. num. at the end of the computation
+  int sum = 1; // keeps track of the current sum; this will be the nth Fib. num. at the end of the computation
   int i;
   for (i = 2 ; i < n ; i++) {
     sum = n2 + n1;
