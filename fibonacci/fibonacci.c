@@ -25,6 +25,7 @@ int fib(int n) {
   return fib(n-1)+fib(n-2);
 }
 
+// iterative: prints the nth Fibonacci number
 int fibIterative(int n) {
   if (n == 0) { return 0; }
   int n1 = 1; // represents n-1 in the recursive version of fib(int n) -- this is a base case
