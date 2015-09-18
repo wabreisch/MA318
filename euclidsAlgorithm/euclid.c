@@ -30,6 +30,7 @@ int gcd(int a, int b) {
   // findLinearComb(a, b);
   if (b == 0) { return a; }
   else {
+    printf("%d mod %d = %d\n", a, b, (b%a));
     return gcd(b, a%b);
   }
 }

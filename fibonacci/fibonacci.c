@@ -5,6 +5,11 @@ int fib(int n);
 int fibIterative(int n);
 
 int main(int argc, char** argv) {
+  if (argc != 3) {
+    printf("Error, you must supply exactly two command line arguments.\n");
+    printf("Example: fib i 12\n");
+    return 1;
+  }
   char* opt = argv[1];
   int n = atoi(argv[2]);
   if (*opt == 'i') { // quick and dirty option checking

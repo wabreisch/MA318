@@ -17,7 +17,7 @@ char* strToUpper(char* str) {
     counter++;
   }
   for (counter ; counter >= 0 ; counter--) {
-
+    str--;
   }
 }
 

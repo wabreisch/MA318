@@ -1,4 +1,4 @@
-// Wes Breisch -- CSC 399
+// Wes Breisch
 // This program will perform a Vigenere cipher on a supplied file and
 // output the result to the desired file
 #include <stdio.h>
@@ -9,21 +9,14 @@
 char encrypt(char c1, char c2);
 char decrypt(char c1, char c2);
 void process(char* pw);
+void checkArgs(int argc, char** argv);
 
 int main(int argc, char** argv) {
-	if (argc != 4) {
-		printf("Error - you must supply exactly 4 command line arguments\n");
-		printf("Form: ./a.out (e|d) INPUT OUTPUT\n");
-		exit(1);
-	} else if (strlen(argv[1]) != 1) {
-		printf("Error - second argument must be ONLY 'e' or 'd'\n");
-		exit(1);
-	} else if (toupper(*argv[1]) != 'E' && toupper(*argv[1]) != 'D') {
-		printf("Error - unrecognized option: %c\n", *argv[1]);
-		exit(1);
-	}
+	checkArgs(argc, argv);
+
 	FILE* infile;
 	FILE* outfile;
+
 	char holder[1000];
 	char* password = malloc(1001);
 	printf("Password: ");
@@ -62,8 +55,6 @@ int main(int argc, char** argv) {
 	}
 	fclose(infile);
 	fclose(outfile);
-	//free(password);
-	//free(holder);
 	return 0;
 }
 
@@ -78,8 +69,6 @@ char encrypt(char c1, char c2) {
 		c1-=97;
 		c2-=65;
 		c1 = ((c1+c2)%26)+97;
-	} else {
-		// Ignore
 	}
 	return c1;
 }
@@ -95,21 +84,33 @@ char decrypt(char c1, char c2) {
 		c1-=97;
 		c2-=65;
 		c1 = ((c1-c2+26)%26)+97;
-	} else {
-		// Ignore
 	}
 	return c1;
 }
 
 void process(char* pw) {
-    int i, j;
-    for (i = 0, j = 0; pw[i] != 0 ; i++, j++) {
-        if ( isalpha(pw[i]) ) {
-            pw[j] = pw[i];
-            pw[j] = toupper(pw[j]);
-	} else {
-            j--;                                     
-	}
-    }
-    pw[j] = 0;
+  int i, j;
+  for (i = 0, j = 0; pw[i] != 0 ; i++, j++) {
+    if ( isalpha(pw[i]) ) {
+      pw[j] = pw[i];
+      pw[j] = toupper(pw[j]);
+	  } else {
+      j--;                                     
+   	}
+  }
+  pw[j] = 0;
+}
+
+void checkArgs(int argc, char** argv) {
+  if (argc != 4) {
+    printf("Error - you must supply exactly 4 command line arguments\n");
+    printf("Form: ./a.out (e|d) INPUT OUTPUT\n");
+    exit(1);
+  } else if (strlen(argv[1]) != 1) {
+    printf("Error - second argument must be ONLY 'e' or 'd'\n");
+    exit(1);
+  } else if (toupper(*argv[1]) != 'E' && toupper(*argv[1]) != 'D') {
+    printf("Error - unrecognized option: %c\n", *argv[1]);
+    exit(1);
+  }
 }
